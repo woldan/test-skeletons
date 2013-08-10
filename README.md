@@ -14,13 +14,33 @@ On Debian-ish system e.g. something like this might suffice:
 
 ## Usage
 
+### For the Impatient
+
+On a Unix-ish system this should work:
+
+    git clone https://github.com/woldan/test-skeletons.git
+
+    cd test-skeletons
+    git submodule init
+    git submodule update
+
+    mkdir ../build.test-skeletons
+    cd ../build.test-skeletons
+    cmake ../test-seletons
+    make
+
+    make test
+
+### Download
+
 Change to this directory or do equivalent GUI operations for the following steps:
 
+    git clone https://github.com/woldan/test-skeletons.git <this/directory>
     cd <this/directory>
 
 ### Get git Submodules
 
-Let git download the referenced sub-module repositories (e.g. catch):
+Let git download the referenced sub-module repositories (e.g. [catch](https://github.com/philsquared/Catch.git)):
 
     git submodule init
     git submodule update
@@ -35,6 +55,10 @@ Create out-of-source build directory (preferrably not inside the source dir):
 Configure the build:
 
     cmake <source/directory/where/top-level/CMakeLists.txt/is/located>
+
+Or, specify Xcode as build system on Mac OS:
+
+    cmake -G Xcode <source/directory/where/top-level/CMakeLists.txt/is/located>
 
 ### Build
 
@@ -55,3 +79,13 @@ Or, run the build system (if using MSVC):
 CMake created a `test` target that can be run like this:
 
     make test
+
+Or run [CTest](file:///d:/local/cmake/doc/cmake-2.8/ctest.html) directly:
+
+    ctest
+    ctest -VV
+
+Or run the test runners even more direct to get their fancy output:
+
+    ./test.catch/run.hello.test.using.catch
+    ./test.boost/run.hello.test.using.boost
