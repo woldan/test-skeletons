@@ -26,7 +26,7 @@ On a Unix-ish system this should work:
 
     mkdir ../build.test-skeletons
     cd ../build.test-skeletons
-    cmake ../test-seletons
+    cmake ../test-skeletons
     make
 
     make test
