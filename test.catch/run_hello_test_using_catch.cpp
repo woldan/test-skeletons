@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
 #include <hello.h>
+#include <stdexcept>
 
 TEST_CASE("hello greeter has a usable default message set") {
   REQUIRE(hello_greeter().message() == "World");
@@ -17,10 +18,10 @@ TEST_CASE("hello greeter message can be set to different non-empty strings") {
 }
 
 TEST_CASE("hello greeter throws std::length_error if an empty message is set") {
-  REQUIRE_THROWS(hello_greeter().set_message(""));
+  REQUIRE_THROWS_AS(hello_greeter().set_message(""), std::length_error);
 }
 
 TEST_CASE("hello greeter throws std::invalid_argument if same message is set again") {
-  REQUIRE_THROWS(hello_greeter().set_message("World"));
+  REQUIRE_THROWS_AS(hello_greeter().set_message("World"), std::invalid_argument);
 }
 
